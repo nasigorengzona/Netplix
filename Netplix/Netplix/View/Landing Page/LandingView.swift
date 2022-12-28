@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LandingView: View {
-    @EnvironmentObject var searchVM : SearchViewModel
     @StateObject var landingVM : LandingViewModel = .init()
     
     @State var highlightSelected = 0

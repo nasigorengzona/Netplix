@@ -12,7 +12,6 @@ struct NetplixApp: App {
     var body: some Scene {
         WindowGroup {
             LandingView()
-                .environmentObject(SearchViewModel())
         }
     }
 }
