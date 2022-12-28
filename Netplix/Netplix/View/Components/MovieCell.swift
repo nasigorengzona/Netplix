@@ -16,6 +16,10 @@ struct MovieCell: View {
     var body: some View {
         VStack {
             Text(movieTitle)
+                .multilineTextAlignment(.center)
+                .font(.system(size: 20))
+                .minimumScaleFactor(0.01)
+                .frame(height: 30)
             
             if moviePoster == "" {
                 Image(systemName: "photo")
@@ -31,8 +35,8 @@ struct MovieCell: View {
                 }
             }
         }
-        .frame(width: screenWidth * 0.4)
-        .padding(10)
+        .frame(width: screenWidth * 0.4, height: screenHeight * 0.3)
+        .padding(8)
         .background(Color.gray)
         .cornerRadius(20)
         .onTapGesture {

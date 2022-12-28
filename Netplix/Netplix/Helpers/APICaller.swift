@@ -35,7 +35,9 @@ class APICaller {
                         completion(.success(results.results))
                     }
                 } catch {
-                    completion(.failure(error))
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
                 }
             }
             task.resume()
@@ -52,7 +54,9 @@ class APICaller {
                         completion(.success(results.results))
                     }
                 } catch {
-                    completion(.failure(error))
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
                 }
             }
             task.resume()
@@ -70,7 +74,9 @@ class APICaller {
                     }
                     
                 } catch {
-                    completion(.failure(error))
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
                 }
             }
             task.resume()
@@ -90,7 +96,9 @@ class APICaller {
                     completion(.success(results.results))
                 }
             } catch {
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
                 print(error.localizedDescription)
             }
             
@@ -109,7 +117,9 @@ class APICaller {
                     completion(.success(results.results))
                 }
             } catch {
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
                 print(error.localizedDescription)
             }
             
@@ -129,7 +139,9 @@ class APICaller {
                 }
 
             } catch {
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
                 print(error.localizedDescription)
             }
         }

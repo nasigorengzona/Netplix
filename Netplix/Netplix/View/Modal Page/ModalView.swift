@@ -17,7 +17,7 @@ struct ModalView: View {
     
     var body: some View {
         if modalVM.movieTrailer.isEmpty {
-            ProgressView("Getting Movie Info ~")
+            ProgressView("We're preparing your movie info. Please Wait.")
                 .onAppear{
                     modalVM.movieTitle = self.movieTitle
                     modalVM.getTrailer()

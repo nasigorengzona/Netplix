@@ -11,12 +11,13 @@ import Combine
 class SearchViewModel : ObservableObject {
     @Published var allMovies : [Movie] = [Movie]()
     @Published var searchedMovies : [Movie] = [Movie]()
-    @Published var searchTerm: String = "avengers"
+    @Published var searchTerm: String = ""
     
     var subscriptions = Set<AnyCancellable>()
     
     init(){
         getAllMovies()
+        //searchMovie(movieTitle: searchTerm)
         $searchTerm
             .dropFirst()
             .debounce(for: .seconds(0.5), scheduler: RunLoop.main)

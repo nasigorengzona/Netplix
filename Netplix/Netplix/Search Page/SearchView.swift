@@ -15,29 +15,30 @@ struct SearchView: View {
     var body: some View {
         
         if searchVM.allMovies.isEmpty {
-            ProgressView("Searching movies ~")
+            ProgressView("Searching movies")
         } else {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Search")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding(.leading, 10)
-                    
-                    LazyVGrid(columns: columns) {
-                        if searchVM.searchTerm == "" {
-                            ForEach(0..<searchVM.allMovies.count, id: \.self) { i in
-                                MovieCell(movieTitle: searchVM.allMovies[i].original_title!, movieDesc: searchVM.allMovies[i].overview!, moviePoster: searchVM.allMovies[i].poster_path!)
-                            }
-                        } else {
-                            ForEach(0..<searchVM.searchedMovies.count, id: \.self) { i in
-                                MovieCell().onAppear{
-                                    print(searchVM.searchedMovies[0].overview ?? "")
+            NavigationView {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(searchVM.searchTerm != "" ? "Search" : "Recommendation")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .padding(.leading, 10)
+                        
+                        LazyVGrid(columns: columns) {
+
+                            if searchVM.searchTerm == "" {
+                                ForEach(0..<searchVM.allMovies.count, id: \.self) { i in
+                                    MovieCell(movieTitle: searchVM.allMovies[i].original_title!, movieDesc: searchVM.allMovies[i].overview!, moviePoster: searchVM.allMovies[i].poster_path!)
+                                }
+                            } else {
+                                ForEach(0..<searchVM.searchedMovies.count, id: \.self) { i in
+                                    MovieCell(movieTitle: searchVM.searchedMovies[i].original_title!, movieDesc: searchVM.searchedMovies[i].overview!, moviePoster: searchVM.searchedMovies[i].poster_path ?? "")
                                 }
                             }
                         }
+
                     }
-                    .searchable(text: $searchVM.searchTerm)
                 }
             }
         }
